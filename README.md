@@ -25,4 +25,26 @@
 
         npm install -g react-devtools
 
--
+## Running Native app
+- Run IOS
+
+        react-native run-ios
+
+- Run Android
+
+        react-native run-android
+
+- Android issue Run
+
+        npm start -- --reset-cache
+
+## Hot Keys
+
+- IOS
+
+        Reaload - cmd+R
+        Debug - cmd+D
+- Android
+
+        Reload Double press R
+        Debug - cmd+m

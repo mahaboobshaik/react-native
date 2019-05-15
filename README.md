@@ -34,7 +34,7 @@
 
         react-native run-android
 
-- Android issue Run
+- Cache issue Run
 
         npm start -- --reset-cache
 
@@ -46,5 +46,19 @@
         Debug - cmd+D
 - Android
 
-        Reload Double press R
+        Reload - Double press R
         Debug - cmd+m
+
+## Eslint setup
+
+        npm i -D eslint babel-eslint eslint-plugin-react
+
+## React-Devtools
+
+        npm i -g react-devtools
+
+## Reset commands
+
+        rm -rf /tmp/metro-bundler-cache-*
+        rm -rf node_modules && npm install
+        npm start -- --reset-cache

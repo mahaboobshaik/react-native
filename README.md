@@ -18,9 +18,7 @@
 
         react-native init demo --version X.XX.X
         react-native init demo --version react-native@next
-- Running native application
 
-        react-native run-ios
 - Installing developer tools
 
         npm install -g react-devtools
@@ -53,7 +51,7 @@
 
         npm i -D eslint babel-eslint eslint-plugin-react
 
-## React-Devtools
+## Devtools
 
         npm i -g react-devtools
 
@@ -62,3 +60,191 @@
         rm -rf /tmp/metro-bundler-cache-*
         rm -rf node_modules && npm install
         npm start -- --reset-cache
+
+## Generator toolbox - React Native toolbox
+
+- https://github.com/bamlab/generator-rn-toolbox
+
+## Material kit & vector icons
+
+        npm install --save react-native-material-kit react-native-vector-icons
+
+## Linking all dependencies 
+        
+        react-native link
+
+- Cource
+
+        Building Restfull web APIs with Node.js and Express
+
+## Native debugger
+
+- Install debugger
+        
+        brew update && brew cask install react-native-debugger
+- In createStore add
+
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+## Navigation 
+
+### Bottom Tab Navigation 
+-
+        npm i --save react-navigation
+
+-       
+        import Icon from 'react-native-vector-icons/EvilIcons';
+
+        static navigationOptions = {
+                tabBarIcon : ({tintColor}) => (
+                <Icon name={'plus'} size={50} color={tintColor} />
+                )
+        }
+
+-
+        import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
+        import page1 from './page1';
+        import page2 from './page2';
+        import page3 from './page3';
+
+        const TabNavigator = createBottomTabNavigator(
+                {
+                        page1: page1,
+                        page2: page2,
+                        page3: page3
+                },
+                {
+                        initialRouteName: 'page1',
+                        tabBarOptions: {
+                        activeTintColor: 'white',
+                        inactiveTintColor: '#80cbc4',
+                        showLabel: false,
+                        // showIcon: true,
+                        // labelStyle: {
+                        //     color: 'white',
+                        // },
+                        style:{
+                                backgroundColor: '#26a69a'
+                        }
+                        }
+                }
+        )
+
+        export default createAppContainer(TabNavigator);
+        
+## Redux
+
+- Initial State
+
+        {
+                "param1": [],
+                "param2": true
+        }
+- Actions
+        
+        import C from './constants';
+        export const updatePeopleData = (data) => ({
+                type: C.PARAM1,
+                payload: data
+        })
+
+        export function updateConfigurationApi(status){
+                if(status)
+                        return { type: C.SET_PARAM2 }
+                else
+                        return { type: C.UNSET_PARAM2 }
+        }
+
+- Constants
+
+        const constants = {
+                UPDATE_PARAM1 : "UPDATE_PARAM1",
+                SET_PARAM2 : "SET_PARAM2",
+                UNSET_PARAM2 : "UNSET_PARAM2"
+        }
+
+        export default constants;
+
+- Reducer
+
+        import C from './constants';
+        import { combineReducers } from 'redux';
+
+        export const param1 = (state = [], action) => {
+                switch (action.type) {
+                        case C.UPDATE_PARAM1:
+                                return action.payload;
+                        default:
+                                return state;
+                }
+        }
+
+        export const param2 = (state = false, action) => {
+
+                switch (action.type) {
+
+                        case C.SET_PARAM2:
+                        return true
+
+                        case C.UNSET_PARAM2:
+                        return false
+
+                        default:
+                        return state
+                }
+
+        }
+
+        export default combineReducers({
+                people
+        })
+
+- storeProvider
+
+        import sampleData from './initialState';
+
+        var store = undefined;
+
+        export default {
+                init(configureStore){
+                        store = configureStore(sampleData);
+                },
+                getStore(){
+                        return store;
+                },
+                getCurrentState(){
+                        return store.getState();
+                },
+                getApi(){
+                        var currentState = this.getCurrentState();
+                        return currentState.config.api;
+                 }
+        };
+
+- index
+
+        import appReducer from './reducers';
+        import thunk from 'redux-thunk';
+        import { createStore, applyMiddleware } from 'redux';
+
+        const consoleMessages = store => next => action => {
+        
+                let result;
+                
+                /*console.groupCollapsed(`dispatching action => ${action.type}`)
+        
+                console.log(`
+
+                        Data: ${JSON.stringify(action)}
+
+                `)
+                
+                console.groupEnd()*/
+
+                result = next(action);
+                return result;
+        }
+
+        export default (initialState = {}) => {
+                return applyMiddleware(thunk, consoleMessages)(createStore)(appReducer, initialState);
+        }

@@ -196,7 +196,8 @@
         }
 
         export default combineReducers({
-                people
+                param1,
+                param2
         })
 
 - storeProvider
@@ -248,3 +249,16 @@
         export default (initialState = {}) => {
                 return applyMiddleware(thunk, consoleMessages)(createStore)(appReducer, initialState);
         }
+
+- Integration
+
+        import storeFactory from './store';
+        import storeProvider from './store/storeProvider';
+
+        storeProvider.init(storeFactory);
+        const store = storeProvider.getStore();
+        const saveState = () => JSON.stringify(store.getState());
+        store.subscribe(saveState);
+
+        <Provider store={store}>
+        </Provider>

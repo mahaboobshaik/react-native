@@ -293,43 +293,43 @@
 
         render() {
 
-        var drawerContent = (
-                <View style={styles.drawerContent}>
-                <View style={styles.leftTop}/>
-                <View style={styles.leftBottom}>
-                        <View><Text>Drawer Content</Text></View>
-                </View>
-                </View>
-        );
-        // customize drawer's style (Optional)
-        var customStyles = {
-                drawer: {
-                        shadowColor: '#000',
-                        shadowOpacity: 0.8,
-                        shadowRadius: 10
-                },
-                mask: {}, // style of mask if it is enabled
-                main: {} // style of main board
-        };
-
-
-        return (
-                <Drawer
-                        ref={(ref) => this._drawer = ref}
-                        style={styles.container}
-                        drawerWidth={300}
-                        drawerContent={drawerContent}
-                        type={Drawer.types.Overlay}
-                        customStyles={{drawer: styles.drawer}}
-                        drawerPosition={Drawer.positions.left}
-                        onDrawerOpen={() => {console.log('Drawer is opened');}}
-                        onDrawerClose={() => {console.log('Drawer is closed')}}
-                        easingFunc={Easing.ease}
-                        >
-                        <View style={styles.content}>
-                                <Text onPress={this.openDrawer}>{Object.values(Drawer.positions).join(' ')}</Text>
-                                <Text>{Object.values(Drawer.types).join(' ')}</Text>
+                var drawerContent = (
+                        <View style={styles.drawerContent}>
+                        <View style={styles.leftTop}/>
+                        <View style={styles.leftBottom}>
+                                <View><Text>Drawer Content</Text></View>
                         </View>
-                </Drawer>
+                        </View>
+                );
+                // customize drawer's style (Optional)
+                var customStyles = {
+                        drawer: {
+                                shadowColor: '#000',
+                                shadowOpacity: 0.8,
+                                shadowRadius: 10
+                        },
+                        mask: {}, // style of mask if it is enabled
+                        main: {} // style of main board
+                };
+
+
+                return (
+                        <Drawer
+                                ref={(ref) => this._drawer = ref}
+                                style={styles.container}
+                                drawerWidth={300}
+                                drawerContent={drawerContent}
+                                type={Drawer.types.Overlay}
+                                customStyles={{drawer: styles.drawer}}
+                                drawerPosition={Drawer.positions.left}
+                                onDrawerOpen={() => {console.log('Drawer is opened');}}
+                                onDrawerClose={() => {console.log('Drawer is closed')}}
+                                easingFunc={Easing.ease}
+                                >
+                                <View style={styles.content}>
+                                        <Text onPress={this.openDrawer}>{Object.values(Drawer.positions).join(' ')}</Text>
+                                        <Text>{Object.values(Drawer.types).join(' ')}</Text>
+                                </View>
+                        </Drawer>
                 );
         }

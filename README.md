@@ -86,13 +86,28 @@
 
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
+## SafeAreaView
+
+        import { SafeAreaView } from 'react-native';
+
+        <SafeAreaView style={styles.safeArea}>
+        </SafeAreaView>
+
+        const styles = StyleSheet.create({
+                safeArea: {
+                        flex: 1,
+                        backgroundColor: '#ddd'
+                }
+        }
+
 ## Navigation 
 
 ### Bottom Tab Navigation 
 -
         npm i --save react-navigation
 
--       
+-  Respective pages
+
         import Icon from 'react-native-vector-icons/EvilIcons';
 
         static navigationOptions = {
@@ -116,16 +131,16 @@
                 {
                         initialRouteName: 'page1',
                         tabBarOptions: {
-                        activeTintColor: 'white',
-                        inactiveTintColor: '#80cbc4',
-                        showLabel: false,
-                        // showIcon: true,
-                        // labelStyle: {
-                        //     color: 'white',
-                        // },
-                        style:{
-                                backgroundColor: '#26a69a'
-                        }
+                                activeTintColor: 'white',
+                                inactiveTintColor: '#80cbc4',
+                                showLabel: false,
+                                // showIcon: true,
+                                // labelStyle: {
+                                //     color: 'white',
+                                // },
+                                style:{
+                                        backgroundColor: '#26a69a'
+                                }
                         }
                 }
         )
@@ -262,3 +277,59 @@
 
         <Provider store={store}>
         </Provider>
+
+## Side drawer
+
+-
+        npm install --save react-native-drawer-menu
+
+-
+        https://github.com/Tinysymphony/react-native-drawer-menu
+
+-
+        openDrawer(){
+                this._drawer.openDrawer();
+        }
+
+        render() {
+
+        var drawerContent = (
+                <View style={styles.drawerContent}>
+                <View style={styles.leftTop}/>
+                <View style={styles.leftBottom}>
+                        <View><Text>Drawer Content</Text></View>
+                </View>
+                </View>
+        );
+        // customize drawer's style (Optional)
+        var customStyles = {
+                drawer: {
+                        shadowColor: '#000',
+                        shadowOpacity: 0.8,
+                        shadowRadius: 10
+                },
+                mask: {}, // style of mask if it is enabled
+                main: {} // style of main board
+        };
+
+
+        return (
+                <Drawer
+                        ref={(ref) => this._drawer = ref}
+                        style={styles.container}
+                        drawerWidth={300}
+                        drawerContent={drawerContent}
+                        type={Drawer.types.Overlay}
+                        customStyles={{drawer: styles.drawer}}
+                        drawerPosition={Drawer.positions.left}
+                        onDrawerOpen={() => {console.log('Drawer is opened');}}
+                        onDrawerClose={() => {console.log('Drawer is closed')}}
+                        easingFunc={Easing.ease}
+                        >
+                        <View style={styles.content}>
+                                <Text onPress={this.openDrawer}>{Object.values(Drawer.positions).join(' ')}</Text>
+                                <Text>{Object.values(Drawer.types).join(' ')}</Text>
+                        </View>
+                </Drawer>
+                );
+        }

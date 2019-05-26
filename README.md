@@ -67,7 +67,10 @@
 
 ## Material kit & vector icons
 
-        npm install --save react-native-material-kit react-native-vector-icons
+-
+        npm install --save react-native-material-kit react-native-vector-icons 
+
+- https://oblador.github.io/react-native-vector-icons/
 
 ## Linking all dependencies 
         
@@ -105,6 +108,7 @@
 ### Bottom Tab Navigation 
 -
         npm i --save react-navigation
+        npm i --save react-native-gesture-handler
 
 -  Respective pages
 
@@ -332,4 +336,31 @@
                                 </View>
                         </Drawer>
                 );
+        }
+
+## navigation drawer android fix
+
+- Edit in MainActivity.java
+
+        import com.facebook.react.ReactActivity;
+        + import com.facebook.react.ReactActivityDelegate;
+        + import com.facebook.react.ReactRootView;
+        + import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+
+        public class MainActivity extends ReactActivity {
+
+        @Override
+                protected String getMainComponentName() {
+                return "Example";
+        }
+
+        +  @Override
+        +  protected ReactActivityDelegate createReactActivityDelegate() {
+        +    return new ReactActivityDelegate(this, getMainComponentName()) {
+        +      @Override
+        +      protected ReactRootView createRootView() {
+        +       return new RNGestureHandlerEnabledRootView(MainActivity.this);
+        +      }
+        +    };
+        +  }
         }

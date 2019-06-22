@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
 import {
@@ -8,6 +8,7 @@ import {
     createStackNavigator,
     createBottomTabNavigator,
     createDrawerNavigator,
+    DrawerItems
 } from 'react-navigation';
 
 import Welcome from './pages/Welcome';
@@ -19,16 +20,7 @@ import Page11 from './pages/Page11';
 import Page111 from './pages/Page111';
 import Page12 from './pages/Page12';
 import Page13 from './pages/Page13';
-
-class Routes extends Component {
-    render(){
-        return (
-            <AppContainer />
-        )
-    }
-}
-
-export default Routes;
+import DrawerMenu from './drawerMenu';
 
 const Page11Statck = createStackNavigator({
     Page11 : { 
@@ -149,7 +141,15 @@ const AppDrawerNavigator = createDrawerNavigator({
     Page1 : { screen : DashboardStackNavigator},
     Page2 : { screen : Page2Statck},
     Page3 : { screen : Page3Statck}
-})
+}, 
+{
+    initialRouteName: 'Page1',
+    contentComponent: DrawerMenu,
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle'
+}
+)
 
 
 const AppSwitchNavigator = createSwitchNavigator({
@@ -159,12 +159,25 @@ const AppSwitchNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
 
+class Routes extends Component {
+    render(){
+        return (
+            <AppContainer />
+        )
+    }
+}
+
+export default Routes;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    naviagionHeader: {
+        width : '100%',
+        height: 150,
+        backgroundColor: 'red'
     }
 })
-

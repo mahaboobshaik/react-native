@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
         height: 150,
         backgroundColor: 'red'
     }
-})
+}) 

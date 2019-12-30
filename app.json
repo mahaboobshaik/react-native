@@ -1,19 +1,18 @@
 {
   "expo": {
-    "name": "RN First",
-    "slug": "rn-first",
+    "name": "Goals",
+    "slug": "my-goals-list",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/places.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,7 +23,17 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.basha.goals-list",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.basha.goals_list",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "CAMERA"
+      ]
     }
   }
 }

@@ -1,6 +1,6 @@
 const variables = {
     development: {
-        googleApiKey: 'AIzaSyB1JegOZ1SJhd2_wqHmPugLaeWtOkwIML0'
+        googleApiKey: ''
     },
     production: {
         googleApiKey: ''

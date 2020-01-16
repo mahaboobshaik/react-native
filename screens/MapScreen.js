@@ -51,14 +51,20 @@ const MapScreen = props => {
     }
 
     return (
-        <MapView style={styles.map} region={mapRegion} onPress={selectLocationHanlder} >
+        <MapView 
+            style={styles.map} 
+            region={mapRegion} 
+            provider={MapView.PROVIDER_GOOGLE}
+            showCompass={true} 
+            rotateEnabled={false}
+            showUserLocation={true}
+            onPress={selectLocationHanlder}
+             >
             {
                 markerCoordinates &&
                 <Marker 
                     title={"Picked Location"} 
-                    coordinate={markerCoordinates}
-                    provider={PROVIDER_GOOGLE}
-                    ></Marker>
+                    coordinate={markerCoordinates}></Marker>
             }
         </MapView>
     )

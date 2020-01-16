@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 import * as placesAction from '../store/places-action';
 
 import ImagePicker from '../components/ImagePicker';
+import LocationPicker from '../components/LocationPicker';
 
 const NewPlaceScreen = props => {
 
@@ -34,6 +35,7 @@ const NewPlaceScreen = props => {
                 <Text style={styles.label}>Title</Text>
                 <TextInput style={styles.textInput} onChangeText={titleChangeHandler} value={titleValue} />
                 <ImagePicker onImageTaken={imageTakenHanlder} />
+                <LocationPicker navigation={props.navigation} />
                 <Button title="Save Place" color={Colors.primary} onPress={savePlaceHanlder} />
             </View>
         </ScrollView>
